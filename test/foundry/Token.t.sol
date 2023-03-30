@@ -16,7 +16,7 @@ contract TokenTest is Test {
         vm.deal(user1, 20 ether);
         vm.deal(user2, 20 ether);
         vm.prank(owner);
-        token = new Deflationary("Puppy", "PUP", 1, 1000000, 1);
+        token = new Deflationary("Puppy", "PUP", 1, 1000000);
     }
 
     //tests for burning in transfer functions

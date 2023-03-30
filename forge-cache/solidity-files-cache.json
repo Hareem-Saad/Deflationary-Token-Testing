@@ -53,8 +53,8 @@
       }
     },
     "contracts/Token.sol": {
-      "lastModificationDate": 1680176283888,
-      "contentHash": "8ab3508916ee52a450f68eafbe66fdee",
+      "lastModificationDate": 1680176533214,
+      "contentHash": "4a597ff2765adb0d95cf74fa4e521515",
       "sourceName": "contracts/Token.sol",
       "solcConfig": {
         "settings": {
@@ -1001,8 +1001,8 @@
       }
     },
     "test/foundry/Token.t.sol": {
-      "lastModificationDate": 1680176336281,
-      "contentHash": "2f25083b4fd4969524813a9c6f6365f3",
+      "lastModificationDate": 1680176541964,
+      "contentHash": "e73be1e2c43f29924ec69760fbf2f0de",
       "sourceName": "test/foundry/Token.t.sol",
       "solcConfig": {
         "settings": {

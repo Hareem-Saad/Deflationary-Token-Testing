@@ -13,11 +13,9 @@ contract Deflationary is ERC20, Ownable {
 
     // % that will be burned everytime on transaction and used for deflation
     uint8 private _burnRate;
-    uint8 private _tax;
 
-    constructor(string memory name_, string memory symbol_, uint8 burnRate, uint256 supply_, uint8 tax_) ERC20(name_,symbol_) {
+    constructor(string memory name_, string memory symbol_, uint8 burnRate, uint256 supply_) ERC20(name_,symbol_) {
         _burnRate = burnRate;
-        _tax = tax_;
         _mint(msg.sender, supply_*(10**(decimals())));
     }
 
@@ -75,23 +73,6 @@ contract Deflationary is ERC20, Ownable {
     //get fee data
     function getBurnRate() public view onlyOwner returns(uint8){
         return _burnRate;
-    }
-
-    //calculate the fee that will be burned
-    function _calculateTaxAmount(uint256 amount) public view returns(uint256){
-        return amount * _tax / 100;
-    }
-    
-    //setting fee percent after contract is deployed
-    function setTax(uint8 tax_) public onlyOwner returns(uint8){
-        require(tax_ < 10,"Fee cannot be greater than 10 percent");
-        _tax = tax_;
-        return _tax;
-    }
-
-    //get fee data
-    function getTax() public view onlyOwner returns(uint8){
-        return _tax;
     }
     
 }
