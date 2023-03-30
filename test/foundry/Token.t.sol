@@ -16,7 +16,7 @@ contract TokenTest is Test {
         vm.deal(user1, 20 ether);
         vm.deal(user2, 20 ether);
         vm.prank(owner);
-        token = new Deflationary("Puppy", "PUP", 1, 1000000);
+        token = new Deflationary("Puppy", "PUP", 1, 1000000, 1);
     }
 
     //tests for burning in transfer functions
@@ -36,10 +36,10 @@ contract TokenTest is Test {
         vm.prank(owner);
         token.transfer(user1, amount);
 
-        assertEq(token.balanceOf(user1), amount - token._calcfeepercentage(amount));
+        assertEq(token.balanceOf(user1), amount - token.calculateBurnRate(amount));
 
         uint totalSupplyAfter = token.totalSupply();
-        assertEq(totalSupplyBefore - token._calcfeepercentage(amount), totalSupplyAfter);
+        assertEq(totalSupplyBefore - token.calculateBurnRate(amount), totalSupplyAfter);
     }
 
     function testSpendAllowance() public {
@@ -49,7 +49,7 @@ contract TokenTest is Test {
         vm.prank(user1);
         token.transferFrom(owner, user2, 100);
 
-        assertEq(token.balanceOf(user2), 100 - token._calcfeepercentage(100));
+        assertEq(token.balanceOf(user2), 100 - token.calculateBurnRate(100));
     }
 
     function testSpendAllowance(uint amount) public {
@@ -61,7 +61,7 @@ contract TokenTest is Test {
         vm.prank(user1);
         token.transferFrom(owner, user2, amount);
 
-        assertEq(token.balanceOf(user2), amount - token._calcfeepercentage(amount));
+        assertEq(token.balanceOf(user2), amount - token.calculateBurnRate(amount));
     }
 
     function testCannotSpendAllowance(uint amount) public {

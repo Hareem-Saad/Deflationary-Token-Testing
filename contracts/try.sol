@@ -28,7 +28,7 @@ contract Deflationary is ERC20, Ownable {
         require(balanceOf(msg.sender) >= amount, "Not enough tokens to transfer");
 
         //get burn amount
-        uint256 burnAmount = calculateBurnRate(amount);
+        uint256 burnAmount = _calculateBurnRate(amount);
 
         //transfer amount - burnAmount
         _transfer(owner, to, amount-burnAmount);
@@ -43,10 +43,10 @@ contract Deflationary is ERC20, Ownable {
         address spender = _msgSender();
 
         //check for enough balance
-        require(balanceOf(from) >= amount, "Not enough tokens to transfer");
+        require(balanceOf(msg.sender) >= amount, "Not enough tokens to transfer");
 
         //get burn amount
-        uint256 burnAmount = calculateBurnRate(amount);
+        uint256 burnAmount = _calculateBurnRate(amount);
 
         //spend allowance
         _spendAllowance(from, spender, amount - burnAmount);
@@ -61,7 +61,7 @@ contract Deflationary is ERC20, Ownable {
     }
     
     //calculate the fee that will be burned
-    function calculateBurnRate(uint256 amount) public view returns(uint256){
+    function _calculateBurnRate(uint256 amount) public view returns(uint256){
         return amount * _burnRate / 100;
     }
     
