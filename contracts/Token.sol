@@ -19,6 +19,16 @@ contract Deflationary is ERC20, Ownable {
         _mint(msg.sender, supply_*(10**(decimals())));
     }
 
+    /**
+     * @notice allows users to transfer from someone their account
+     * on each trasaction some amount of tokens are burned
+     * 
+     * @param to address to which you want to transfer
+     * @param amount amount of tokens you want to transfer
+     *
+     * - `to` cannot be the zero address.
+     * - `msg.sender` must have a balance of at least `amount`.
+     */
     function transfer(address to, uint256 amount) public override returns (bool) {
         address owner = _msgSender();
         
@@ -37,6 +47,19 @@ contract Deflationary is ERC20, Ownable {
         return true;
     }
 
+    /**
+     * @notice allows users to transfer from someone else's account given that they have an approval to do so
+     * on each trasaction some amount of tokens are burned
+     * 
+     * @param from address from which you want to transfer
+     * @param to address to which you want to transfer
+     * @param amount amount of tokens you want to transfer
+     *
+     * - `from` and `to` cannot be the zero address.
+     * - `from` must have a balance of at least `amount`.
+     * - the caller must have allowance for ``from``'s tokens of at least
+     * `amount`.
+     */
     function transferFrom(address from, address to, uint256 amount) public override returns (bool) {
         address spender = _msgSender();
 
@@ -58,19 +81,31 @@ contract Deflationary is ERC20, Ownable {
         return true;
     }
     
-    //calculate the fee that will be burned
+    /**
+     * @notice calculate the amount that will be burned
+     * 
+     * @param amount amount of tokens you want to transfer
+     */
     function calculateBurnRate(uint256 amount) public view returns(uint256){
         return amount * _burnRate / 100;
     }
     
-    //setting fee percent after contract is deployed
+    /**
+     * @notice allows owner to set burnRate
+     * 
+     * @param burnRate_ percentage of tokens you want to burn on each trasaction
+     * 
+     * - `burnRate_` must be lower than 50%
+     */
     function setBurnRate(uint8 burnRate_) public onlyOwner returns(uint8){
-        require(burnRate_ > 0,"Fee cannot be 0 percent");
+        require(burnRate_ < 50,"Fee cannot be greater than 50 percent");
         _burnRate = burnRate_;
         return _burnRate;
     }
 
-    //get fee data
+    /**
+     * @notice allows owner to view burnRate
+     */
     function getBurnRate() public view onlyOwner returns(uint8){
         return _burnRate;
     }
