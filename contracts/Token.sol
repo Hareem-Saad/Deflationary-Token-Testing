@@ -12,9 +12,9 @@ contract Deflationary is ERC20, Ownable {
     event deflation(address from, uint transferAmount, uint burnAmount);
 
     // % that will be burned everytime on transaction and used for deflation
-    uint8 private _burnRate;
+    uint16 private _burnRate;
 
-    constructor(string memory name_, string memory symbol_, uint8 burnRate, uint256 supply_) ERC20(name_,symbol_) {
+    constructor(string memory name_, string memory symbol_, uint16 burnRate, uint256 supply_) ERC20(name_,symbol_) {
         _burnRate = burnRate;
         _mint(msg.sender, supply_*(10**(decimals())));
     }
@@ -97,7 +97,7 @@ contract Deflationary is ERC20, Ownable {
      * 
      * - `burnRate_` must be lower than 50%
      */
-    function setBurnRate(uint8 burnRate_) public onlyOwner returns(uint8){
+    function setBurnRate(uint8 burnRate_) public onlyOwner returns(uint16){
         require(burnRate_ < 50,"Fee cannot be greater than 50 percent");
         _burnRate = burnRate_;
         return _burnRate;
@@ -106,7 +106,7 @@ contract Deflationary is ERC20, Ownable {
     /**
      * @notice allows owner to view burnRate
      */
-    function getBurnRate() public view onlyOwner returns(uint8){
+    function getBurnRate() public view onlyOwner returns(uint16){
         return _burnRate;
     }
     

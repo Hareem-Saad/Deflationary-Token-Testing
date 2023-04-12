@@ -53,8 +53,8 @@
       }
     },
     "contracts/Token.sol": {
-      "lastModificationDate": 1680176533214,
-      "contentHash": "4a597ff2765adb0d95cf74fa4e521515",
+      "lastModificationDate": 1681279551658,
+      "contentHash": "39f0affbe9bf8a1cff354690e017d697",
       "sourceName": "contracts/Token.sol",
       "solcConfig": {
         "settings": {
@@ -95,52 +95,6 @@
       "artifacts": {
         "Deflationary": {
           "0.8.17+commit.8df45f5f.Windows.msvc": "Token.sol\\Deflationary.json"
-        }
-      }
-    },
-    "contracts/try.sol": {
-      "lastModificationDate": 1680175890145,
-      "contentHash": "af675b65defa543f081976b215de568f",
-      "sourceName": "contracts/try.sol",
-      "solcConfig": {
-        "settings": {
-          "optimizer": {
-            "enabled": true,
-            "runs": 200
-          },
-          "metadata": {
-            "bytecodeHash": "ipfs",
-            "appendCBOR": true
-          },
-          "outputSelection": {
-            "*": {
-              "": [
-                "ast"
-              ],
-              "*": [
-                "abi",
-                "evm.bytecode",
-                "evm.deployedBytecode",
-                "evm.methodIdentifiers",
-                "metadata"
-              ]
-            }
-          },
-          "evmVersion": "london",
-          "libraries": {}
-        }
-      },
-      "imports": [
-        "node_modules/@openzeppelin\\contracts/access/Ownable.sol",
-        "node_modules/@openzeppelin\\contracts/token/ERC20/ERC20.sol",
-        "node_modules/@openzeppelin\\contracts/token/ERC20/IERC20.sol",
-        "node_modules/@openzeppelin\\contracts/token/ERC20/extensions/IERC20Metadata.sol",
-        "node_modules/@openzeppelin\\contracts/utils/Context.sol"
-      ],
-      "versionRequirement": "^0.8.0",
-      "artifacts": {
-        "Deflationary": {
-          "0.8.17+commit.8df45f5f.Windows.msvc": "try.sol\\Deflationary.json"
         }
       }
     },
@@ -1001,7 +955,7 @@
       }
     },
     "test/foundry/Token.t.sol": {
-      "lastModificationDate": 1680176541964,
+      "lastModificationDate": 1681277352191,
       "contentHash": "e73be1e2c43f29924ec69760fbf2f0de",
       "sourceName": "test/foundry/Token.t.sol",
       "solcConfig": {
